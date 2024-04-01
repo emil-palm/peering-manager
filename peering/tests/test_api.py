@@ -14,6 +14,7 @@ from ..enums import (
     CommunityType,
     DeviceStatus,
     RoutingPolicyDirection,
+    RoutingPolicyProtocol,
 )
 from ..models import (
     AutonomousSystem,
@@ -615,25 +616,28 @@ class RouterTest(APIViewTestCases.View):
 
 class RoutingPolicyTest(APIViewTestCases.View):
     model = RoutingPolicy
-    brief_fields = ["id", "url", "display", "name", "slug", "direction"]
+    brief_fields = ["id", "url", "display", "name", "slug", "direction", "protocol"]
     create_data = [
         {
             "name": "Test1",
             "slug": "test1",
             "direction": RoutingPolicyDirection.EXPORT,
             "weight": 1,
+            "protocol": RoutingPolicyProtocol.BGP,
         },
         {
             "name": "Test2",
             "slug": "test2",
             "direction": RoutingPolicyDirection.EXPORT,
             "weight": 2,
+            "protocol": RoutingPolicyProtocol.BGP,
         },
         {
             "name": "Test3",
             "slug": "test3",
             "direction": RoutingPolicyDirection.IMPORT_EXPORT,
             "weight": 3,
+            "protocol": RoutingPolicyProtocol.BGP,
         },
     ]
     bulk_update_data = {"description": "Awesome routing policy"}
@@ -647,18 +651,21 @@ class RoutingPolicyTest(APIViewTestCases.View):
                     slug="example-1",
                     direction=RoutingPolicyDirection.EXPORT,
                     weight=0,
+                    protocol=RoutingPolicyProtocol.BGP,
                 ),
                 RoutingPolicy(
                     name="Example 2",
                     slug="example-2",
                     direction=RoutingPolicyDirection.IMPORT,
                     weight=0,
+                    protocol=RoutingPolicyProtocol.BGP,
                 ),
                 RoutingPolicy(
                     name="Example 3",
                     slug="example-3",
                     direction=RoutingPolicyDirection.EXPORT,
                     weight=0,
+                    protocol=RoutingPolicyProtocol.BGP,
                 ),
             ]
         )

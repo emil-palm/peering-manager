@@ -96,3 +96,11 @@ class RoutingPolicyDirection(ChoiceSet):
     IMPORT_EXPORT = "import-export-policy"
 
     CHOICES = ((EXPORT, "Export"), (IMPORT, "Import"), (IMPORT_EXPORT, "Import+Export"))
+
+
+class RoutingPolicyProtocol(ChoiceSet):
+    BGP = "bgp"
+    OSPF = "ospf"
+    ISIS = "isis"
+
+    CHOICES = ((BGP, "BGP"), (OSPF, "OSPF"), (ISIS, "IS-IS"))

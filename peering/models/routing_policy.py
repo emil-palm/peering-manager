@@ -2,7 +2,8 @@ from django.urls import reverse
 from django.db import models
 from django.utils.safestring import mark_safe
 
-from ..enums import IPFamily, RoutingPolicyDirection
+from ..enums import IPFamily, RoutingPolicyDirection, RoutingPolicyProtocol
+
 from peering_manager.models import OrganisationalModel
 
 
@@ -12,6 +13,11 @@ class RoutingPolicy(OrganisationalModel):
         choices=RoutingPolicyDirection,
         default=RoutingPolicyDirection.IMPORT,
     )
+
+    protocol = models.CharField(
+        max_length=50, choices=RoutingPolicyProtocol, default=RoutingPolicyProtocol.BGP
+    )
+
     weight = models.PositiveSmallIntegerField(
         default=0, help_text="The higher the number, the higher the priority"
     )

@@ -9,6 +9,7 @@ from ..enums import (
     CommunityType,
     DeviceStatus,
     RoutingPolicyDirection,
+    RoutingPolicyProtocol,
 )
 from ..models import (
     AutonomousSystem,
@@ -335,18 +336,21 @@ class RoutingPolicyTestCase(ViewTestCases.PrimaryObjectViewTestCase):
                     slug="routing-policy-1",
                     direction=RoutingPolicyDirection.EXPORT,
                     weight=0,
+                    protocol=RoutingPolicyProtocol.BGP,
                 ),
                 RoutingPolicy(
                     name="Routing Policy 2",
                     slug="routing-policy-2",
                     direction=RoutingPolicyDirection.IMPORT,
                     weight=0,
+                    protocol=RoutingPolicyProtocol.BGP,
                 ),
                 RoutingPolicy(
                     name="Routing Policy 3",
                     slug="routing-policy-3",
                     direction=RoutingPolicyDirection.IMPORT_EXPORT,
                     weight=0,
+                    protocol=RoutingPolicyProtocol.BGP,
                 ),
             ]
         )
@@ -356,6 +360,7 @@ class RoutingPolicyTestCase(ViewTestCases.PrimaryObjectViewTestCase):
             "slug": "routing-policy-4",
             "direction": RoutingPolicyDirection.IMPORT,
             "address_family": 6,
+            "protocol": RoutingPolicyProtocol.BGP,
             "weight": 1,
             "comments": "",
             "tags": [],

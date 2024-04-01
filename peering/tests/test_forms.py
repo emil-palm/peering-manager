@@ -5,7 +5,12 @@ from messaging.models import Email
 from net.models import Connection
 
 from ..constants import *
-from ..enums import CommunityType, DeviceStatus, RoutingPolicyDirection
+from ..enums import (
+    CommunityType,
+    DeviceStatus,
+    RoutingPolicyDirection,
+    RoutingPolicyProtocol,
+)
 from ..forms import (
     AutonomousSystemEmailForm,
     AutonomousSystemForm,
@@ -161,6 +166,7 @@ class RoutingPolicyTest(TestCase):
                 "direction": RoutingPolicyDirection.IMPORT,
                 "weight": 0,
                 "address_family": 0,
+                "protocol": RoutingPolicyProtocol.BGP,
             }
         )
         self.assertTrue(test.is_valid())
