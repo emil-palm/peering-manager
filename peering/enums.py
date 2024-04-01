@@ -90,7 +90,7 @@ class IPFamily(ChoiceSet):
     CHOICES = ((ALL, "All"), (IPV4, "IPv4"), (IPV6, "IPv6"))
 
 
-class RoutingPolicyType(ChoiceSet):
+class RoutingPolicyDirection(ChoiceSet):
     EXPORT = "export-policy"
     IMPORT = "import-policy"
     IMPORT_EXPORT = "import-export-policy"

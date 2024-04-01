@@ -11,7 +11,7 @@ from ..enums import (
     BGPSessionStatus,
     CommunityType,
     DeviceStatus,
-    RoutingPolicyType,
+    RoutingPolicyDirection,
 )
 from ..filtersets import (
     AutonomousSystemFilterSet,
@@ -532,20 +532,20 @@ class RoutingPolicyTestCase(TestCase, BaseFilterSetTests):
                 RoutingPolicy(
                     name="Routing Policy 1",
                     slug="routing-policy-1",
-                    type=RoutingPolicyType.EXPORT,
+                    direction=RoutingPolicyDirection.EXPORT,
                     weight=0,
                 ),
                 RoutingPolicy(
                     name="Routing Policy 2",
                     slug="routing-policy-2",
-                    type=RoutingPolicyType.IMPORT,
+                    direction=RoutingPolicyDirection.IMPORT,
                     weight=0,
                     address_family=6,
                 ),
                 RoutingPolicy(
                     name="Routing Policy 3",
                     slug="routing-policy-3",
-                    type=RoutingPolicyType.IMPORT_EXPORT,
+                    direction=RoutingPolicyDirection.IMPORT_EXPORT,
                     weight=10,
                 ),
             ]
@@ -557,12 +557,12 @@ class RoutingPolicyTestCase(TestCase, BaseFilterSetTests):
         params = {"q": "routing-policy-1"}
         self.assertEqual(self.filterset(params, self.queryset).qs.count(), 1)
 
-    def test_type(self):
-        params = {"type": [RoutingPolicyType.IMPORT]}
+    def test_direction(self):
+        params = {"direction": [RoutingPolicyDirection.IMPORT]}
         self.assertEqual(self.filterset(params, self.queryset).qs.count(), 2)
-        params = {"type": [RoutingPolicyType.EXPORT]}
+        params = {"direction": [RoutingPolicyDirection.EXPORT]}
         self.assertEqual(self.filterset(params, self.queryset).qs.count(), 2)
-        params = {"type": [RoutingPolicyType.IMPORT_EXPORT]}
+        params = {"direction": [RoutingPolicyDirection.IMPORT_EXPORT]}
         self.assertEqual(self.filterset(params, self.queryset).qs.count(), 1)
 
     def test_weight(self):

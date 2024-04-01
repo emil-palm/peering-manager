@@ -34,7 +34,7 @@ from .enums import (
     CommunityType,
     DeviceStatus,
     IPFamily,
-    RoutingPolicyType,
+    RoutingPolicyDirection,
 )
 from .models import (
     AutonomousSystem,
@@ -1002,7 +1002,7 @@ class RouterFilterForm(PeeringManagerModelFilterSetForm):
 
 class RoutingPolicyForm(PeeringManagerModelForm):
     slug = SlugField(max_length=255)
-    type = forms.ChoiceField(choices=RoutingPolicyType, widget=StaticSelect)
+    direction = forms.ChoiceField(choices=RoutingPolicyDirection, widget=StaticSelect)
     address_family = forms.ChoiceField(choices=IPFamily, widget=StaticSelect)
     communities = DynamicModelMultipleChoiceField(
         required=False, queryset=Community.objects.all()
@@ -1016,7 +1016,7 @@ class RoutingPolicyForm(PeeringManagerModelForm):
                 "name",
                 "slug",
                 "description",
-                "type",
+                "direction",
                 "weight",
                 "address_family",
                 "communities",
@@ -1032,7 +1032,7 @@ class RoutingPolicyForm(PeeringManagerModelForm):
             "name",
             "slug",
             "description",
-            "type",
+            "direction",
             "weight",
             "address_family",
             "communities",
@@ -1042,9 +1042,9 @@ class RoutingPolicyForm(PeeringManagerModelForm):
 
 
 class RoutingPolicyBulkEditForm(PeeringManagerModelBulkEditForm):
-    type = forms.ChoiceField(
+    direction = forms.ChoiceField(
         required=False,
-        choices=add_blank_choice(RoutingPolicyType),
+        choices=add_blank_choice(RoutingPolicyDirection),
         widget=StaticSelect,
     )
     weight = forms.IntegerField(required=False, min_value=0, max_value=32767)
@@ -1062,9 +1062,9 @@ class RoutingPolicyBulkEditForm(PeeringManagerModelBulkEditForm):
 
 class RoutingPolicyFilterForm(PeeringManagerModelFilterSetForm):
     model = RoutingPolicy
-    type = forms.MultipleChoiceField(
+    direction = forms.MultipleChoiceField(
         required=False,
-        choices=add_blank_choice(RoutingPolicyType),
+        choices=add_blank_choice(RoutingPolicyDirection),
         widget=StaticSelectMultiple,
     )
     weight = forms.IntegerField(required=False, min_value=0, max_value=32767)

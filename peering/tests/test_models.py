@@ -8,7 +8,12 @@ from devices.models import PasswordAlgorithm, Platform
 from net.models import Connection
 from utils.testing import load_json
 
-from ..enums import BGPSessionStatus, CommunityType, DeviceStatus, RoutingPolicyType
+from ..enums import (
+    BGPSessionStatus,
+    CommunityType,
+    DeviceStatus,
+    RoutingPolicyDirection,
+)
 from ..models import (
     AutonomousSystem,
     BGPGroup,
@@ -591,10 +596,14 @@ class RoutingPolicyTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.routing_policies = [
-            RoutingPolicy(name="test-1", slug="test-1", type=RoutingPolicyType.EXPORT),
-            RoutingPolicy(name="test-2", slug="test-2", type=RoutingPolicyType.IMPORT),
             RoutingPolicy(
-                name="test-3", slug="test-3", type=RoutingPolicyType.IMPORT_EXPORT
+                name="test-1", slug="test-1", type=RoutingPolicyDirection.EXPORT
+            ),
+            RoutingPolicy(
+                name="test-2", slug="test-2", type=RoutingPolicyDirection.IMPORT
+            ),
+            RoutingPolicy(
+                name="test-3", slug="test-3", type=RoutingPolicyDirection.IMPORT_EXPORT
             ),
             RoutingPolicy(name="test-4", slug="test-4", type="unknown"),
         ]

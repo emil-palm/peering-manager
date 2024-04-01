@@ -387,7 +387,7 @@ class RoutingPolicySerializer(PeeringManagerModelSerializer):
             "name",
             "slug",
             "description",
-            "type",
+            "direction",
             "weight",
             "address_family",
             "communities",

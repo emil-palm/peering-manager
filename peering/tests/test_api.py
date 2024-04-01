@@ -9,7 +9,12 @@ from net.models import Connection
 from utils.testing import APITestCase, APIViewTestCases
 
 from ..constants import *
-from ..enums import BGPSessionStatus, CommunityType, DeviceStatus, RoutingPolicyType
+from ..enums import (
+    BGPSessionStatus,
+    CommunityType,
+    DeviceStatus,
+    RoutingPolicyDirection,
+)
 from ..models import (
     AutonomousSystem,
     BGPGroup,
@@ -610,24 +615,24 @@ class RouterTest(APIViewTestCases.View):
 
 class RoutingPolicyTest(APIViewTestCases.View):
     model = RoutingPolicy
-    brief_fields = ["id", "url", "display", "name", "slug", "type"]
+    brief_fields = ["id", "url", "display", "name", "slug", "direction"]
     create_data = [
         {
             "name": "Test1",
             "slug": "test1",
-            "type": RoutingPolicyType.EXPORT,
+            "direction": RoutingPolicyDirection.EXPORT,
             "weight": 1,
         },
         {
             "name": "Test2",
             "slug": "test2",
-            "type": RoutingPolicyType.EXPORT,
+            "direction": RoutingPolicyDirection.EXPORT,
             "weight": 2,
         },
         {
             "name": "Test3",
             "slug": "test3",
-            "type": RoutingPolicyType.IMPORT_EXPORT,
+            "direction": RoutingPolicyDirection.IMPORT_EXPORT,
             "weight": 3,
         },
     ]
@@ -640,19 +645,19 @@ class RoutingPolicyTest(APIViewTestCases.View):
                 RoutingPolicy(
                     name="Example 1",
                     slug="example-1",
-                    type=RoutingPolicyType.EXPORT,
+                    direction=RoutingPolicyDirection.EXPORT,
                     weight=0,
                 ),
                 RoutingPolicy(
                     name="Example 2",
                     slug="example-2",
-                    type=RoutingPolicyType.IMPORT,
+                    direction=RoutingPolicyDirection.IMPORT,
                     weight=0,
                 ),
                 RoutingPolicy(
                     name="Example 3",
                     slug="example-3",
-                    type=RoutingPolicyType.EXPORT,
+                    direction=RoutingPolicyDirection.EXPORT,
                     weight=0,
                 ),
             ]

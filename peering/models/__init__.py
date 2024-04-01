@@ -19,7 +19,11 @@ from peeringdb.functions import get_shared_internet_exchanges
 from peeringdb.models import IXLanPrefix, Network, NetworkContact, NetworkIXLan
 
 from .. import call_irr_as_set_resolver, parse_irr_as_set
-from ..enums import BGPState, CommunityType, DeviceStatus, IPFamily, RoutingPolicyType
+from ..enums import (
+    BGPState,
+    CommunityType,
+    DeviceStatus,
+)
 from ..fields import ASNField, CommunityField
 from .abstracts import *
 from .mixins import *
@@ -219,9 +223,9 @@ class AutonomousSystem(PrimaryModel, PolicyMixin):
 
         filter = {"autonomous_system": self}
         if internet_exchange_point:
-            filter["ixp_connection__id__in"] = (
-                internet_exchange_point.get_connections().values_list("id", flat=True)
-            )
+            filter[
+                "ixp_connection__id__in"
+            ] = internet_exchange_point.get_connections().values_list("id", flat=True)
         ip_addresses = InternetExchangePeeringSession.objects.filter(
             **filter
         ).values_list("ip_address", flat=True)
@@ -1780,5 +1784,3 @@ class Router(PrimaryModel):
         self.save()
 
         return True, count
-
-

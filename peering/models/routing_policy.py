@@ -2,15 +2,15 @@ from django.urls import reverse
 from django.db import models
 from django.utils.safestring import mark_safe
 
-from ..enums import BGPState, CommunityType, DeviceStatus, IPFamily, RoutingPolicyType
+from ..enums import IPFamily, RoutingPolicyDirection
 from peering_manager.models import OrganisationalModel
 
 
 class RoutingPolicy(OrganisationalModel):
-    type = models.CharField(
+    direction = models.CharField(
         max_length=50,
-        choices=RoutingPolicyType,
-        default=RoutingPolicyType.IMPORT,
+        choices=RoutingPolicyDirection,
+        default=RoutingPolicyDirection.IMPORT,
     )
     weight = models.PositiveSmallIntegerField(
         default=0, help_text="The higher the number, the higher the priority"
@@ -31,15 +31,15 @@ class RoutingPolicy(OrganisationalModel):
         return reverse("peering:routingpolicy_view", args=[self.pk])
 
     def get_type_html(self, display_name=False):
-        if self.type == RoutingPolicyType.EXPORT:
+        if self.direction == RoutingPolicyDirection.EXPORT:
             badge_type = "badge-primary"
-            text = self.get_type_display()
-        elif self.type == RoutingPolicyType.IMPORT:
+            text = self.get_direction_display()
+        elif self.direction == RoutingPolicyDirection.IMPORT:
             badge_type = "badge-info"
-            text = self.get_type_display()
-        elif self.type == RoutingPolicyType.IMPORT_EXPORT:
+            text = self.get_direction_display()
+        elif self.direction == RoutingPolicyDirection.IMPORT_EXPORT:
             badge_type = "badge-dark"
-            text = self.get_type_display()
+            text = self.get_direction_display()
         else:
             badge_type = "badge-secondary"
             text = "Unknown"

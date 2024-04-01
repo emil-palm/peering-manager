@@ -17,7 +17,7 @@ from .enums import (
     BGPState,
     CommunityType,
     DeviceStatus,
-    RoutingPolicyType,
+    RoutingPolicyDirection,
 )
 from .models import (
     AutonomousSystem,
@@ -323,16 +323,16 @@ class RouterFilterSet(PeeringManagerModelFilterSet):
 
 
 class RoutingPolicyFilterSet(OrganisationalModelFilterSet):
-    type = django_filters.MultipleChoiceFilter(
-        method="type_search", choices=RoutingPolicyType, null_value=None
+    direction = django_filters.MultipleChoiceFilter(
+        method="direction_search", choices=RoutingPolicyDirection, null_value=None
     )
 
     class Meta:
         model = RoutingPolicy
         fields = ["id", "weight", "address_family"]
 
-    def type_search(self, queryset, name, value):
-        qs_filter = Q(type=RoutingPolicyType.IMPORT_EXPORT)
+    def direction_search(self, queryset, name, value):
+        qs_filter = Q(direction=RoutingPolicyDirection.IMPORT_EXPORT)
         for v in value:
-            qs_filter |= Q(type=v)
+            qs_filter |= Q(direction=v)
         return queryset.filter(qs_filter)

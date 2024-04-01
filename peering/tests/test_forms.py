@@ -5,7 +5,7 @@ from messaging.models import Email
 from net.models import Connection
 
 from ..constants import *
-from ..enums import CommunityType, DeviceStatus, RoutingPolicyType
+from ..enums import CommunityType, DeviceStatus, RoutingPolicyDirection
 from ..forms import (
     AutonomousSystemEmailForm,
     AutonomousSystemForm,
@@ -158,7 +158,7 @@ class RoutingPolicyTest(TestCase):
             data={
                 "name": "Test",
                 "slug": "test",
-                "type": RoutingPolicyType.IMPORT,
+                "type": RoutingPolicyDirection.IMPORT,
                 "weight": 0,
                 "address_family": 0,
             }

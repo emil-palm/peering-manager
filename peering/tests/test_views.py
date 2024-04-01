@@ -4,7 +4,12 @@ from bgp.models import Relationship
 from net.models import Connection
 from utils.testing import ViewTestCases
 
-from ..enums import BGPSessionStatus, CommunityType, DeviceStatus, RoutingPolicyType
+from ..enums import (
+    BGPSessionStatus,
+    CommunityType,
+    DeviceStatus,
+    RoutingPolicyDirection,
+)
 from ..models import (
     AutonomousSystem,
     BGPGroup,
@@ -328,19 +333,19 @@ class RoutingPolicyTestCase(ViewTestCases.PrimaryObjectViewTestCase):
                 RoutingPolicy(
                     name="Routing Policy 1",
                     slug="routing-policy-1",
-                    type=RoutingPolicyType.EXPORT,
+                    direction=RoutingPolicyDirection.EXPORT,
                     weight=0,
                 ),
                 RoutingPolicy(
                     name="Routing Policy 2",
                     slug="routing-policy-2",
-                    type=RoutingPolicyType.IMPORT,
+                    direction=RoutingPolicyDirection.IMPORT,
                     weight=0,
                 ),
                 RoutingPolicy(
                     name="Routing Policy 3",
                     slug="routing-policy-3",
-                    type=RoutingPolicyType.IMPORT_EXPORT,
+                    direction=RoutingPolicyDirection.IMPORT_EXPORT,
                     weight=0,
                 ),
             ]
@@ -349,7 +354,7 @@ class RoutingPolicyTestCase(ViewTestCases.PrimaryObjectViewTestCase):
         cls.form_data = {
             "name": "Routing Policy 4",
             "slug": "routing-policy-4",
-            "type": RoutingPolicyType.IMPORT,
+            "direction": RoutingPolicyDirection.IMPORT,
             "address_family": 6,
             "weight": 1,
             "comments": "",
