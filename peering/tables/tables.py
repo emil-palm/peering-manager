@@ -17,7 +17,7 @@ from .columns import BGPSessionStateColumn, CommunityColumn, RoutingPolicyColumn
 
 BGP_RELATIONSHIP = "{{ record.relationship.get_html }}"
 COMMUNITY_TYPE = "{{ record.get_type_html }}"
-ROUTING_POLICY_DIRECTION = "{{ record.get_type_html }}"
+ROUTING_POLICY_DIRECTION = "{{ record.get_direction_html }}"
 
 
 class AutonomousSystemTable(PeeringManagerTable):

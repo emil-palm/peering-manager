@@ -37,7 +37,7 @@ class RoutingPolicy(OrganisationalModel):
     def get_absolute_url(self):
         return reverse("peering:routingpolicy_view", args=[self.pk])
 
-    def get_type_html(self, display_name=False):
+    def get_direction_html(self, display_name=False):
         if self.direction == RoutingPolicyDirection.EXPORT:
             badge_type = "badge-primary"
             text = self.get_direction_display()
