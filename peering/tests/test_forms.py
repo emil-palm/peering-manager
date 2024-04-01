@@ -158,7 +158,7 @@ class RoutingPolicyTest(TestCase):
             data={
                 "name": "Test",
                 "slug": "test",
-                "type": RoutingPolicyDirection.IMPORT,
+                "direction": RoutingPolicyDirection.IMPORT,
                 "weight": 0,
                 "address_family": 0,
             }
