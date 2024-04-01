@@ -372,13 +372,6 @@ class RouterConfigureSerializer(serializers.Serializer):
 
 
 class RoutingPolicySerializer(PeeringManagerModelSerializer):
-    communities = SerializedPKRelatedField(
-        queryset=Community.objects.all(),
-        serializer=NestedCommunitySerializer,
-        required=False,
-        many=True,
-    )
-
     class Meta:
         model = RoutingPolicy
         fields = [
@@ -390,7 +383,6 @@ class RoutingPolicySerializer(PeeringManagerModelSerializer):
             "direction",
             "weight",
             "address_family",
-            "communities",
             "local_context_data",
             "tags",
             "created",

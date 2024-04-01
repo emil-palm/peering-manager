@@ -1019,7 +1019,6 @@ class RoutingPolicyForm(PeeringManagerModelForm):
                 "direction",
                 "weight",
                 "address_family",
-                "communities",
             ),
         ),
         ("Config Context", ("local_context_data",)),
@@ -1050,9 +1049,6 @@ class RoutingPolicyBulkEditForm(PeeringManagerModelBulkEditForm):
     weight = forms.IntegerField(required=False, min_value=0, max_value=32767)
     address_family = forms.ChoiceField(
         required=False, choices=IPFamily, widget=StaticSelect
-    )
-    communities = DynamicModelMultipleChoiceField(
-        required=False, queryset=Community.objects.all()
     )
     local_context_data = JSONField(required=False)
 

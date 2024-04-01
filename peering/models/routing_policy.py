@@ -18,7 +18,6 @@ class RoutingPolicy(OrganisationalModel):
     address_family = models.PositiveSmallIntegerField(
         default=IPFamily.ALL, choices=IPFamily
     )
-    communities = models.ManyToManyField("Community", blank=True)
 
     class Meta:
         verbose_name_plural = "routing policies"
