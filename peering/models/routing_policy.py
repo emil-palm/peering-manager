@@ -55,3 +55,22 @@ class RoutingPolicy(OrganisationalModel):
             text = self.name
 
         return mark_safe(f'<span class="badge {badge_type}">{text}</span>')
+
+    def get_protocol_html(self, display_name=False):
+        if self.protocol == RoutingPolicyProtocol.BGP:
+            badge_type = "badge-primary"
+            text = self.get_protocol_display()
+        elif self.protocol == RoutingPolicyProtocol.OSPF:
+            badge_type = "badge-info"
+            text = self.get_protocol_display()
+        elif self.protocol == RoutingPolicyProtocol.ISIS:
+            badge_type = "badge-dark"
+            text = self.get_protocol_display()
+        else:
+            badge_type = "badge-secondary"
+            text = "Unknown"
+
+        if display_name:
+            text = self.name
+
+        return mark_safe(f'<span class="badge {badge_type}">{text}</span>')
