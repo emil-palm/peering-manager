@@ -19,6 +19,7 @@ BGP_RELATIONSHIP = "{{ record.relationship.get_html }}"
 COMMUNITY_TYPE = "{{ record.get_type_html }}"
 ROUTING_POLICY_DIRECTION = "{{ record.get_direction_html }}"
 ROUTING_POLICY_PROTOCOL = "{{ record.get_protocol_html }}"
+ROUTING_POLICY_TYPE = "{{ record.get_type_html }}"
 
 
 class AutonomousSystemTable(PeeringManagerTable):
@@ -389,6 +390,7 @@ class RoutingPolicyTable(PeeringManagerTable):
     name = tables.Column(linkify=True)
     direction = tables.TemplateColumn(template_code=ROUTING_POLICY_DIRECTION)
     protocol = tables.TemplateColumn(template_code=ROUTING_POLICY_PROTOCOL)
+    type = tables.TemplateColumn(template_code=ROUTING_POLICY_TYPE)
     tags = columns.TagColumn(url_name="peering:routingpolicy_list")
 
     class Meta(PeeringManagerTable.Meta):
@@ -402,6 +404,7 @@ class RoutingPolicyTable(PeeringManagerTable):
             "address_family",
             "protocol",
             "tags",
+            "type",
             "actions",
         )
         default_columns = (
@@ -411,5 +414,6 @@ class RoutingPolicyTable(PeeringManagerTable):
             "weight",
             "address_family",
             "protocol",
+            "type",
             "actions",
         )

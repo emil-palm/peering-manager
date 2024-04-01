@@ -104,3 +104,10 @@ class RoutingPolicyProtocol(ChoiceSet):
     ISIS = "isis"
 
     CHOICES = ((BGP, "BGP"), (OSPF, "OSPF"), (ISIS, "IS-IS"))
+
+
+class RoutingPolicyType(ChoiceSet):
+    PERMIT = "permit"
+    DENY = "deny"
+
+    CHOICES = ((PERMIT, "permit"), (DENY, "deny"))

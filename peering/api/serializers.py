@@ -384,6 +384,7 @@ class RoutingPolicySerializer(PeeringManagerModelSerializer):
             "weight",
             "address_family",
             "protocol",
+            "type",
             "local_context_data",
             "tags",
             "created",

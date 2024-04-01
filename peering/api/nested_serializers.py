@@ -93,4 +93,13 @@ class NestedRoutingPolicySerializer(WritableNestedSerializer):
 
     class Meta:
         model = RoutingPolicy
-        fields = ["id", "url", "display", "name", "slug", "direction", "protocol"]
+        fields = [
+            "id",
+            "url",
+            "display",
+            "name",
+            "slug",
+            "direction",
+            "protocol",
+            "type",
+        ]
