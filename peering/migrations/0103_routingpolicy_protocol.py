@@ -14,8 +14,8 @@ class Migration(migrations.Migration):
             name="protocol",
             field=models.CharField(
                 choices=[("bgp", "BGP"), ("ospf", "OSPF"), ("isis", "IS-IS")],
-                default="bgp",
                 max_length=50,
+                blank=True,
             ),
         ),
     ]

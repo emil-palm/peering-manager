@@ -15,7 +15,9 @@ class RoutingPolicy(OrganisationalModel):
     )
 
     protocol = models.CharField(
-        max_length=50, choices=RoutingPolicyProtocol, default=RoutingPolicyProtocol.BGP
+        max_length=50,
+        choices=RoutingPolicyProtocol,
+        blank=True,
     )
 
     weight = models.PositiveSmallIntegerField(
